@@ -41,6 +41,36 @@ public class AdminMenu {
     Report report = new Report();
     
     
+    void incorrectOption(String menu){
+        System.out.println("********** OPCION INCORRECTA **********");
+        System.out.println("Desea seguir con la ejecucion del programa? ");
+        System.out.println("1. SI");
+        System.out.println("2. NO ");
+        try{option = scan.nextInt();}catch(Exception e){incorrectOption("incorrectOption");}
+        switch(option){
+            case 1:
+                switch(menu){
+                    case "incorrectOption":
+                        incorrectOption("incorrectOption");
+                        break;
+                    case "menu":    
+                        menu();
+                        break;
+                    case "enterMovie":
+                        enterMovie();
+                        break;
+                    case "assignMovie":
+                        assignMovie();
+                        break;
+                }
+                break;
+            case 2:
+                System.exit(0);
+                break;
+        }
+        
+    }
+    
     public void menu(){
         System.out.println("Bienvenido Administrador");
         System.out.println("Por favor, elija la opcion que desea realizar: ");
@@ -77,6 +107,9 @@ public class AdminMenu {
             case 7:
                 System.exit(0);
             break;
+            default:
+                incorrectOption("menu");
+                break;
         }   
     
     }
@@ -102,7 +135,8 @@ public class AdminMenu {
                 menu();
                 break;
             default:
-                
+                incorrectOption("enterMovie");
+                break;
         }
     }
     public void movieAutomatic(){
@@ -152,6 +186,7 @@ public class AdminMenu {
         System.out.println("Asignacion de peliculas por sala");
         System.out.println("1. Asignacion manual");
         System.out.println("2. Asignacion automatica");
+        System.out.println("3. Atras");
         try{option = scan.nextInt();}catch(Exception e){}
         switch(option){
             case 1:
@@ -161,8 +196,11 @@ public class AdminMenu {
             case 2:
                 assignAutomatic();
                 break;
+            case 3:
+                menu();
             default:
-                
+                incorrectOption("assignMovie");
+                break;
         }
     }
     
